@@ -1,3 +1,4 @@
+version: 2
 jobs:
   build:
     docker:
@@ -11,3 +12,12 @@ jobs:
           echo 'echo Hello world!' >> run.sh
           chmod +x run.sh
       - run: ./run.sh
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: [master]
